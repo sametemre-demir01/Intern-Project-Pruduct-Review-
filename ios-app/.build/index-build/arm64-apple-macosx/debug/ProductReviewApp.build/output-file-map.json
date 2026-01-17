@@ -1,0 +1,61 @@
+{
+  "": {
+    "swift-dependencies": "/Users/aybukedemir/Desktop/intern-project-product-review-main/ios-app/.build/index-build/arm64-apple-macosx/debug/ProductReviewApp.build/master.swiftdeps"
+  },
+  "/Users/aybukedemir/Desktop/intern-project-product-review-main/ios-app/ProductReviewApp/App/ProductReviewApp.swift": {
+    "dependencies": "/Users/aybukedemir/Desktop/intern-project-product-review-main/ios-app/.build/index-build/arm64-apple-macosx/debug/ProductReviewApp.build/ProductReviewApp.d",
+    "object": "/Users/aybukedemir/Desktop/intern-project-product-review-main/ios-app/.build/index-build/arm64-apple-macosx/debug/ProductReviewApp.build/ProductReviewApp.swift.o",
+    "swiftmodule": "/Users/aybukedemir/Desktop/intern-project-product-review-main/ios-app/.build/index-build/arm64-apple-macosx/debug/ProductReviewApp.build/ProductReviewApp~partial.swiftmodule",
+    "swift-dependencies": "/Users/aybukedemir/Desktop/intern-project-product-review-main/ios-app/.build/index-build/arm64-apple-macosx/debug/ProductReviewApp.build/ProductReviewApp.swiftdeps",
+    "diagnostics": "/Users/aybukedemir/Desktop/intern-project-product-review-main/ios-app/.build/index-build/arm64-apple-macosx/debug/ProductReviewApp.build/ProductReviewApp.dia"
+  },
+  "/Users/aybukedemir/Desktop/intern-project-product-review-main/ios-app/ProductReviewApp/Models/Product.swift": {
+    "dependencies": "/Users/aybukedemir/Desktop/intern-project-product-review-main/ios-app/.build/index-build/arm64-apple-macosx/debug/ProductReviewApp.build/Product.d",
+    "object": "/Users/aybukedemir/Desktop/intern-project-product-review-main/ios-app/.build/index-build/arm64-apple-macosx/debug/ProductReviewApp.build/Product.swift.o",
+    "swiftmodule": "/Users/aybukedemir/Desktop/intern-project-product-review-main/ios-app/.build/index-build/arm64-apple-macosx/debug/ProductReviewApp.build/Product~partial.swiftmodule",
+    "swift-dependencies": "/Users/aybukedemir/Desktop/intern-project-product-review-main/ios-app/.build/index-build/arm64-apple-macosx/debug/ProductReviewApp.build/Product.swiftdeps",
+    "diagnostics": "/Users/aybukedemir/Desktop/intern-project-product-review-main/ios-app/.build/index-build/arm64-apple-macosx/debug/ProductReviewApp.build/Product.dia"
+  },
+  "/Users/aybukedemir/Desktop/intern-project-product-review-main/ios-app/ProductReviewApp/Models/Review.swift": {
+    "dependencies": "/Users/aybukedemir/Desktop/intern-project-product-review-main/ios-app/.build/index-build/arm64-apple-macosx/debug/ProductReviewApp.build/Review.d",
+    "object": "/Users/aybukedemir/Desktop/intern-project-product-review-main/ios-app/.build/index-build/arm64-apple-macosx/debug/ProductReviewApp.build/Review.swift.o",
+    "swiftmodule": "/Users/aybukedemir/Desktop/intern-project-product-review-main/ios-app/.build/index-build/arm64-apple-macosx/debug/ProductReviewApp.build/Review~partial.swiftmodule",
+    "swift-dependencies": "/Users/aybukedemir/Desktop/intern-project-product-review-main/ios-app/.build/index-build/arm64-apple-macosx/debug/ProductReviewApp.build/Review.swiftdeps",
+    "diagnostics": "/Users/aybukedemir/Desktop/intern-project-product-review-main/ios-app/.build/index-build/arm64-apple-macosx/debug/ProductReviewApp.build/Review.dia"
+  },
+  "/Users/aybukedemir/Desktop/intern-project-product-review-main/ios-app/ProductReviewApp/Services/APIService.swift": {
+    "dependencies": "/Users/aybukedemir/Desktop/intern-project-product-review-main/ios-app/.build/index-build/arm64-apple-macosx/debug/ProductReviewApp.build/APIService.d",
+    "object": "/Users/aybukedemir/Desktop/intern-project-product-review-main/ios-app/.build/index-build/arm64-apple-macosx/debug/ProductReviewApp.build/APIService.swift.o",
+    "swiftmodule": "/Users/aybukedemir/Desktop/intern-project-product-review-main/ios-app/.build/index-build/arm64-apple-macosx/debug/ProductReviewApp.build/APIService~partial.swiftmodule",
+    "swift-dependencies": "/Users/aybukedemir/Desktop/intern-project-product-review-main/ios-app/.build/index-build/arm64-apple-macosx/debug/ProductReviewApp.build/APIService.swiftdeps",
+    "diagnostics": "/Users/aybukedemir/Desktop/intern-project-product-review-main/ios-app/.build/index-build/arm64-apple-macosx/debug/ProductReviewApp.build/APIService.dia"
+  },
+  "/Users/aybukedemir/Desktop/intern-project-product-review-main/ios-app/ProductReviewApp/ViewModels/ProductDetailViewModel.swift": {
+    "dependencies": "/Users/aybukedemir/Desktop/intern-project-product-review-main/ios-app/.build/index-build/arm64-apple-macosx/debug/ProductReviewApp.build/ProductDetailViewModel.d",
+    "object": "/Users/aybukedemir/Desktop/intern-project-product-review-main/ios-app/.build/index-build/arm64-apple-macosx/debug/ProductReviewApp.build/ProductDetailViewModel.swift.o",
+    "swiftmodule": "/Users/aybukedemir/Desktop/intern-project-product-review-main/ios-app/.build/index-build/arm64-apple-macosx/debug/ProductReviewApp.build/ProductDetailViewModel~partial.swiftmodule",
+    "swift-dependencies": "/Users/aybukedemir/Desktop/intern-project-product-review-main/ios-app/.build/index-build/arm64-apple-macosx/debug/ProductReviewApp.build/ProductDetailViewModel.swiftdeps",
+    "diagnostics": "/Users/aybukedemir/Desktop/intern-project-product-review-main/ios-app/.build/index-build/arm64-apple-macosx/debug/ProductReviewApp.build/ProductDetailViewModel.dia"
+  },
+  "/Users/aybukedemir/Desktop/intern-project-product-review-main/ios-app/ProductReviewApp/ViewModels/ProductListViewModel.swift": {
+    "dependencies": "/Users/aybukedemir/Desktop/intern-project-product-review-main/ios-app/.build/index-build/arm64-apple-macosx/debug/ProductReviewApp.build/ProductListViewModel.d",
+    "object": "/Users/aybukedemir/Desktop/intern-project-product-review-main/ios-app/.build/index-build/arm64-apple-macosx/debug/ProductReviewApp.build/ProductListViewModel.swift.o",
+    "swiftmodule": "/Users/aybukedemir/Desktop/intern-project-product-review-main/ios-app/.build/index-build/arm64-apple-macosx/debug/ProductReviewApp.build/ProductListViewModel~partial.swiftmodule",
+    "swift-dependencies": "/Users/aybukedemir/Desktop/intern-project-product-review-main/ios-app/.build/index-build/arm64-apple-macosx/debug/ProductReviewApp.build/ProductListViewModel.swiftdeps",
+    "diagnostics": "/Users/aybukedemir/Desktop/intern-project-product-review-main/ios-app/.build/index-build/arm64-apple-macosx/debug/ProductReviewApp.build/ProductListViewModel.dia"
+  },
+  "/Users/aybukedemir/Desktop/intern-project-product-review-main/ios-app/ProductReviewApp/Views/ProductDetailView.swift": {
+    "dependencies": "/Users/aybukedemir/Desktop/intern-project-product-review-main/ios-app/.build/index-build/arm64-apple-macosx/debug/ProductReviewApp.build/ProductDetailView.d",
+    "object": "/Users/aybukedemir/Desktop/intern-project-product-review-main/ios-app/.build/index-build/arm64-apple-macosx/debug/ProductReviewApp.build/ProductDetailView.swift.o",
+    "swiftmodule": "/Users/aybukedemir/Desktop/intern-project-product-review-main/ios-app/.build/index-build/arm64-apple-macosx/debug/ProductReviewApp.build/ProductDetailView~partial.swiftmodule",
+    "swift-dependencies": "/Users/aybukedemir/Desktop/intern-project-product-review-main/ios-app/.build/index-build/arm64-apple-macosx/debug/ProductReviewApp.build/ProductDetailView.swiftdeps",
+    "diagnostics": "/Users/aybukedemir/Desktop/intern-project-product-review-main/ios-app/.build/index-build/arm64-apple-macosx/debug/ProductReviewApp.build/ProductDetailView.dia"
+  },
+  "/Users/aybukedemir/Desktop/intern-project-product-review-main/ios-app/ProductReviewApp/Views/ProductListView.swift": {
+    "dependencies": "/Users/aybukedemir/Desktop/intern-project-product-review-main/ios-app/.build/index-build/arm64-apple-macosx/debug/ProductReviewApp.build/ProductListView.d",
+    "object": "/Users/aybukedemir/Desktop/intern-project-product-review-main/ios-app/.build/index-build/arm64-apple-macosx/debug/ProductReviewApp.build/ProductListView.swift.o",
+    "swiftmodule": "/Users/aybukedemir/Desktop/intern-project-product-review-main/ios-app/.build/index-build/arm64-apple-macosx/debug/ProductReviewApp.build/ProductListView~partial.swiftmodule",
+    "swift-dependencies": "/Users/aybukedemir/Desktop/intern-project-product-review-main/ios-app/.build/index-build/arm64-apple-macosx/debug/ProductReviewApp.build/ProductListView.swiftdeps",
+    "diagnostics": "/Users/aybukedemir/Desktop/intern-project-product-review-main/ios-app/.build/index-build/arm64-apple-macosx/debug/ProductReviewApp.build/ProductListView.dia"
+  }
+}

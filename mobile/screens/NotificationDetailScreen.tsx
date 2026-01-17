@@ -34,6 +34,8 @@ function getNotificationIcon(type: NotificationType): keyof typeof Ionicons.glyp
       return 'cube';
     case 'system':
       return 'notifications';
+    case 'price_drop':
+      return 'trending-down';
   }
 }
 
@@ -45,6 +47,8 @@ function getNotificationColor(type: NotificationType, colors: ReturnType<typeof 
       return colors.success;
     case 'system':
       return '#6366F1'; // Indigo
+    case 'price_drop':
+      return '#EF4444'; // Red
   }
 }
 

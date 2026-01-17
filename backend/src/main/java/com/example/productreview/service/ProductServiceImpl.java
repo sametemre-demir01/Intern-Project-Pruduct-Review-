@@ -56,6 +56,9 @@ public class ProductServiceImpl implements ProductService {
             String sortDir,
             Pageable pageable) {
         
+        log.info("Filtering products with: category={}, minPrice={}, maxPrice={}, minRating={}, sortBy={}, sortDir={}",
+                category, minPrice, maxPrice, minRating, sortBy, sortDir);
+        
         // Kategori kontrolü
         String categoryFilter = (category != null && !category.isEmpty() && !category.equalsIgnoreCase("All")) 
                 ? category : null;

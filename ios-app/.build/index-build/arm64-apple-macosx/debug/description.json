@@ -1,0 +1,320 @@
+{
+  "builtTestProducts" : [
+
+  ],
+  "copyCommands" : {
+
+  },
+  "explicitTargetDependencyImportCheckingMode" : {
+    "none" : {
+
+    }
+  },
+  "generatedSourceTargetSet" : [
+
+  ],
+  "pluginDescriptions" : [
+
+  ],
+  "swiftCommands" : {
+    "C.ProductReviewApp-arm64-apple-macosx26.0-debug.module" : {
+      "executable" : "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/swiftc",
+      "fileList" : "/Users/aybukedemir/Desktop/intern-project-product-review-main/ios-app/.build/index-build/arm64-apple-macosx/debug/ProductReviewApp.build/sources",
+      "importPath" : "/Users/aybukedemir/Desktop/intern-project-product-review-main/ios-app/.build/index-build/arm64-apple-macosx/debug/Modules",
+      "inputs" : [
+        {
+          "kind" : "file",
+          "name" : "/Users/aybukedemir/Desktop/intern-project-product-review-main/ios-app/ProductReviewApp/App/ProductReviewApp.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/aybukedemir/Desktop/intern-project-product-review-main/ios-app/ProductReviewApp/Models/Product.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/aybukedemir/Desktop/intern-project-product-review-main/ios-app/ProductReviewApp/Models/Review.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/aybukedemir/Desktop/intern-project-product-review-main/ios-app/ProductReviewApp/Services/APIService.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/aybukedemir/Desktop/intern-project-product-review-main/ios-app/ProductReviewApp/ViewModels/ProductDetailViewModel.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/aybukedemir/Desktop/intern-project-product-review-main/ios-app/ProductReviewApp/ViewModels/ProductListViewModel.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/aybukedemir/Desktop/intern-project-product-review-main/ios-app/ProductReviewApp/Views/ProductDetailView.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/aybukedemir/Desktop/intern-project-product-review-main/ios-app/ProductReviewApp/Views/ProductListView.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/aybukedemir/Desktop/intern-project-product-review-main/ios-app/.build/index-build/arm64-apple-macosx/debug/swift-version--58304C5D6DBC2206.txt"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/aybukedemir/Desktop/intern-project-product-review-main/ios-app/.build/index-build/arm64-apple-macosx/debug/ProductReviewApp.build/sources"
+        }
+      ],
+      "isLibrary" : false,
+      "moduleName" : "ProductReviewApp",
+      "moduleOutputPath" : "/Users/aybukedemir/Desktop/intern-project-product-review-main/ios-app/.build/index-build/arm64-apple-macosx/debug/Modules/ProductReviewApp.swiftmodule",
+      "objects" : [
+        "/Users/aybukedemir/Desktop/intern-project-product-review-main/ios-app/.build/index-build/arm64-apple-macosx/debug/ProductReviewApp.build/ProductReviewApp.swift.o",
+        "/Users/aybukedemir/Desktop/intern-project-product-review-main/ios-app/.build/index-build/arm64-apple-macosx/debug/ProductReviewApp.build/Product.swift.o",
+        "/Users/aybukedemir/Desktop/intern-project-product-review-main/ios-app/.build/index-build/arm64-apple-macosx/debug/ProductReviewApp.build/Review.swift.o",
+        "/Users/aybukedemir/Desktop/intern-project-product-review-main/ios-app/.build/index-build/arm64-apple-macosx/debug/ProductReviewApp.build/APIService.swift.o",
+        "/Users/aybukedemir/Desktop/intern-project-product-review-main/ios-app/.build/index-build/arm64-apple-macosx/debug/ProductReviewApp.build/ProductDetailViewModel.swift.o",
+        "/Users/aybukedemir/Desktop/intern-project-product-review-main/ios-app/.build/index-build/arm64-apple-macosx/debug/ProductReviewApp.build/ProductListViewModel.swift.o",
+        "/Users/aybukedemir/Desktop/intern-project-product-review-main/ios-app/.build/index-build/arm64-apple-macosx/debug/ProductReviewApp.build/ProductDetailView.swift.o",
+        "/Users/aybukedemir/Desktop/intern-project-product-review-main/ios-app/.build/index-build/arm64-apple-macosx/debug/ProductReviewApp.build/ProductListView.swift.o"
+      ],
+      "otherArguments" : [
+        "-target",
+        "arm64-apple-macosx14.0",
+        "-incremental",
+        "-enable-batch-mode",
+        "-serialize-diagnostics",
+        "-Onone",
+        "-enable-testing",
+        "-j8",
+        "-DSWIFT_PACKAGE",
+        "-DDEBUG",
+        "-DSWIFT_MODULE_RESOURCE_BUNDLE_UNAVAILABLE",
+        "-module-cache-path",
+        "/Users/aybukedemir/Desktop/intern-project-product-review-main/ios-app/.build/index-build/arm64-apple-macosx/debug/ModuleCache",
+        "-parseable-output",
+        "-Xfrontend",
+        "-entry-point-function-name",
+        "-Xfrontend",
+        "ProductReviewApp_main",
+        "-swift-version",
+        "5",
+        "-Xfrontend",
+        "-experimental-lazy-typecheck",
+        "-Xfrontend",
+        "-experimental-skip-all-function-bodies",
+        "-Xfrontend",
+        "-experimental-allow-module-with-compiler-errors",
+        "-Xfrontend",
+        "-empty-abi-descriptor",
+        "-plugin-path",
+        "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/host/plugins/testing",
+        "-sdk",
+        "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX26.2.sdk",
+        "-F",
+        "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/Library/Frameworks",
+        "-F",
+        "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/Library/PrivateFrameworks",
+        "-I",
+        "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/usr/lib",
+        "-L",
+        "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/usr/lib",
+        "-g",
+        "-Xcc",
+        "-isysroot",
+        "-Xcc",
+        "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX26.2.sdk",
+        "-Xcc",
+        "-F",
+        "-Xcc",
+        "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/Library/Frameworks",
+        "-Xcc",
+        "-F",
+        "-Xcc",
+        "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/Library/PrivateFrameworks",
+        "-Xcc",
+        "-fPIC",
+        "-Xcc",
+        "-g",
+        "-package-name",
+        "ios_app"
+      ],
+      "outputFileMapPath" : "/Users/aybukedemir/Desktop/intern-project-product-review-main/ios-app/.build/index-build/arm64-apple-macosx/debug/ProductReviewApp.build/output-file-map.json",
+      "outputs" : [
+        {
+          "kind" : "file",
+          "name" : "/Users/aybukedemir/Desktop/intern-project-product-review-main/ios-app/.build/index-build/arm64-apple-macosx/debug/Modules/ProductReviewApp.swiftmodule"
+        }
+      ],
+      "prepareForIndexing" : true,
+      "sources" : [
+        "/Users/aybukedemir/Desktop/intern-project-product-review-main/ios-app/ProductReviewApp/App/ProductReviewApp.swift",
+        "/Users/aybukedemir/Desktop/intern-project-product-review-main/ios-app/ProductReviewApp/Models/Product.swift",
+        "/Users/aybukedemir/Desktop/intern-project-product-review-main/ios-app/ProductReviewApp/Models/Review.swift",
+        "/Users/aybukedemir/Desktop/intern-project-product-review-main/ios-app/ProductReviewApp/Services/APIService.swift",
+        "/Users/aybukedemir/Desktop/intern-project-product-review-main/ios-app/ProductReviewApp/ViewModels/ProductDetailViewModel.swift",
+        "/Users/aybukedemir/Desktop/intern-project-product-review-main/ios-app/ProductReviewApp/ViewModels/ProductListViewModel.swift",
+        "/Users/aybukedemir/Desktop/intern-project-product-review-main/ios-app/ProductReviewApp/Views/ProductDetailView.swift",
+        "/Users/aybukedemir/Desktop/intern-project-product-review-main/ios-app/ProductReviewApp/Views/ProductListView.swift"
+      ],
+      "tempsPath" : "/Users/aybukedemir/Desktop/intern-project-product-review-main/ios-app/.build/index-build/arm64-apple-macosx/debug/ProductReviewApp.build",
+      "wholeModuleOptimization" : false
+    }
+  },
+  "swiftFrontendCommands" : {
+
+  },
+  "swiftTargetScanArgs" : {
+    "ProductReviewApp" : [
+      "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/swiftc",
+      "-module-name",
+      "ProductReviewApp",
+      "-package-name",
+      "ios_app",
+      "-c",
+      "/Users/aybukedemir/Desktop/intern-project-product-review-main/ios-app/ProductReviewApp/App/ProductReviewApp.swift",
+      "/Users/aybukedemir/Desktop/intern-project-product-review-main/ios-app/ProductReviewApp/Models/Product.swift",
+      "/Users/aybukedemir/Desktop/intern-project-product-review-main/ios-app/ProductReviewApp/Models/Review.swift",
+      "/Users/aybukedemir/Desktop/intern-project-product-review-main/ios-app/ProductReviewApp/Services/APIService.swift",
+      "/Users/aybukedemir/Desktop/intern-project-product-review-main/ios-app/ProductReviewApp/ViewModels/ProductDetailViewModel.swift",
+      "/Users/aybukedemir/Desktop/intern-project-product-review-main/ios-app/ProductReviewApp/ViewModels/ProductListViewModel.swift",
+      "/Users/aybukedemir/Desktop/intern-project-product-review-main/ios-app/ProductReviewApp/Views/ProductDetailView.swift",
+      "/Users/aybukedemir/Desktop/intern-project-product-review-main/ios-app/ProductReviewApp/Views/ProductListView.swift",
+      "-I",
+      "/Users/aybukedemir/Desktop/intern-project-product-review-main/ios-app/.build/index-build/arm64-apple-macosx/debug/Modules",
+      "-target",
+      "arm64-apple-macosx14.0",
+      "-incremental",
+      "-enable-batch-mode",
+      "-serialize-diagnostics",
+      "-Onone",
+      "-enable-testing",
+      "-j8",
+      "-DSWIFT_PACKAGE",
+      "-DDEBUG",
+      "-DSWIFT_MODULE_RESOURCE_BUNDLE_UNAVAILABLE",
+      "-module-cache-path",
+      "/Users/aybukedemir/Desktop/intern-project-product-review-main/ios-app/.build/index-build/arm64-apple-macosx/debug/ModuleCache",
+      "-parseable-output",
+      "-Xfrontend",
+      "-entry-point-function-name",
+      "-Xfrontend",
+      "ProductReviewApp_main",
+      "-swift-version",
+      "5",
+      "-Xfrontend",
+      "-experimental-lazy-typecheck",
+      "-Xfrontend",
+      "-experimental-skip-all-function-bodies",
+      "-Xfrontend",
+      "-experimental-allow-module-with-compiler-errors",
+      "-Xfrontend",
+      "-empty-abi-descriptor",
+      "-plugin-path",
+      "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/host/plugins/testing",
+      "-sdk",
+      "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX26.2.sdk",
+      "-F",
+      "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/Library/Frameworks",
+      "-F",
+      "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/Library/PrivateFrameworks",
+      "-I",
+      "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/usr/lib",
+      "-L",
+      "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/usr/lib",
+      "-g",
+      "-Xcc",
+      "-isysroot",
+      "-Xcc",
+      "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX26.2.sdk",
+      "-Xcc",
+      "-F",
+      "-Xcc",
+      "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/Library/Frameworks",
+      "-Xcc",
+      "-F",
+      "-Xcc",
+      "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/Library/PrivateFrameworks",
+      "-Xcc",
+      "-fPIC",
+      "-Xcc",
+      "-g",
+      "-package-name",
+      "ios_app",
+      "-driver-use-frontend-path",
+      "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/swiftc"
+    ]
+  },
+  "targetDependencyMap" : {
+    "ProductReviewApp" : [
+
+    ]
+  },
+  "testDiscoveryCommands" : {
+
+  },
+  "testEntryPointCommands" : {
+
+  },
+  "traitConfiguration" : {
+    "default" : {
+
+    }
+  },
+  "writeCommands" : {
+    "/Users/aybukedemir/Desktop/intern-project-product-review-main/ios-app/.build/index-build/arm64-apple-macosx/debug/ProductReviewApp.build/sources" : {
+      "alwaysOutOfDate" : false,
+      "inputs" : [
+        {
+          "kind" : "virtual",
+          "name" : "<sources-file-list>"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/aybukedemir/Desktop/intern-project-product-review-main/ios-app/ProductReviewApp/App/ProductReviewApp.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/aybukedemir/Desktop/intern-project-product-review-main/ios-app/ProductReviewApp/Models/Product.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/aybukedemir/Desktop/intern-project-product-review-main/ios-app/ProductReviewApp/Models/Review.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/aybukedemir/Desktop/intern-project-product-review-main/ios-app/ProductReviewApp/Services/APIService.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/aybukedemir/Desktop/intern-project-product-review-main/ios-app/ProductReviewApp/ViewModels/ProductDetailViewModel.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/aybukedemir/Desktop/intern-project-product-review-main/ios-app/ProductReviewApp/ViewModels/ProductListViewModel.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/aybukedemir/Desktop/intern-project-product-review-main/ios-app/ProductReviewApp/Views/ProductDetailView.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/aybukedemir/Desktop/intern-project-product-review-main/ios-app/ProductReviewApp/Views/ProductListView.swift"
+        }
+      ],
+      "outputFilePath" : "/Users/aybukedemir/Desktop/intern-project-product-review-main/ios-app/.build/index-build/arm64-apple-macosx/debug/ProductReviewApp.build/sources"
+    },
+    "/Users/aybukedemir/Desktop/intern-project-product-review-main/ios-app/.build/index-build/arm64-apple-macosx/debug/swift-version--58304C5D6DBC2206.txt" : {
+      "alwaysOutOfDate" : true,
+      "inputs" : [
+        {
+          "kind" : "virtual",
+          "name" : "<swift-get-version>"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/swiftc"
+        }
+      ],
+      "outputFilePath" : "/Users/aybukedemir/Desktop/intern-project-product-review-main/ios-app/.build/index-build/arm64-apple-macosx/debug/swift-version--58304C5D6DBC2206.txt"
+    }
+  }
+}

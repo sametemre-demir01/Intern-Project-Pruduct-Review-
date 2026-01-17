@@ -1,0 +1,47 @@
+client:
+  name: basic
+  file-system: device-agnostic
+tools: {}
+targets:
+  "PackageStructure": ["<PackageStructure>"]
+  "ProductReviewApp-arm64-apple-macosx26.0-debug.module": ["<ProductReviewApp-arm64-apple-macosx26.0-debug.module>"]
+  "main": ["<ProductReviewApp-arm64-apple-macosx26.0-debug.module>"]
+  "test": ["<ProductReviewApp-arm64-apple-macosx26.0-debug.module>"]
+default: "main"
+nodes:
+  "/Users/aybukedemir/Desktop/intern-project-product-review-main/ios-app/ProductReviewApp/":
+    is-directory-structure: true
+    content-exclusion-patterns: [".git",".build"]
+commands:
+  "/Users/aybukedemir/Desktop/intern-project-product-review-main/ios-app/.build/index-build/arm64-apple-macosx/debug/ProductReviewApp.build/sources":
+    tool: write-auxiliary-file
+    inputs: ["<sources-file-list>","/Users/aybukedemir/Desktop/intern-project-product-review-main/ios-app/ProductReviewApp/App/ProductReviewApp.swift","/Users/aybukedemir/Desktop/intern-project-product-review-main/ios-app/ProductReviewApp/Models/Product.swift","/Users/aybukedemir/Desktop/intern-project-product-review-main/ios-app/ProductReviewApp/Models/Review.swift","/Users/aybukedemir/Desktop/intern-project-product-review-main/ios-app/ProductReviewApp/Services/APIService.swift","/Users/aybukedemir/Desktop/intern-project-product-review-main/ios-app/ProductReviewApp/ViewModels/ProductDetailViewModel.swift","/Users/aybukedemir/Desktop/intern-project-product-review-main/ios-app/ProductReviewApp/ViewModels/ProductListViewModel.swift","/Users/aybukedemir/Desktop/intern-project-product-review-main/ios-app/ProductReviewApp/Views/ProductDetailView.swift","/Users/aybukedemir/Desktop/intern-project-product-review-main/ios-app/ProductReviewApp/Views/ProductListView.swift"]
+    outputs: ["/Users/aybukedemir/Desktop/intern-project-product-review-main/ios-app/.build/index-build/arm64-apple-macosx/debug/ProductReviewApp.build/sources"]
+    description: "Write auxiliary file /Users/aybukedemir/Desktop/intern-project-product-review-main/ios-app/.build/index-build/arm64-apple-macosx/debug/ProductReviewApp.build/sources"
+
+  "/Users/aybukedemir/Desktop/intern-project-product-review-main/ios-app/.build/index-build/arm64-apple-macosx/debug/swift-version--58304C5D6DBC2206.txt":
+    tool: write-auxiliary-file
+    inputs: ["<swift-get-version>","/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/swiftc"]
+    outputs: ["/Users/aybukedemir/Desktop/intern-project-product-review-main/ios-app/.build/index-build/arm64-apple-macosx/debug/swift-version--58304C5D6DBC2206.txt"]
+    always-out-of-date: "true"
+    description: "Write auxiliary file /Users/aybukedemir/Desktop/intern-project-product-review-main/ios-app/.build/index-build/arm64-apple-macosx/debug/swift-version--58304C5D6DBC2206.txt"
+
+  "<ProductReviewApp-arm64-apple-macosx26.0-debug.module>":
+    tool: phony
+    inputs: ["/Users/aybukedemir/Desktop/intern-project-product-review-main/ios-app/.build/index-build/arm64-apple-macosx/debug/Modules/ProductReviewApp.swiftmodule"]
+    outputs: ["<ProductReviewApp-arm64-apple-macosx26.0-debug.module>"]
+
+  "C.ProductReviewApp-arm64-apple-macosx26.0-debug.module":
+    tool: shell
+    inputs: ["/Users/aybukedemir/Desktop/intern-project-product-review-main/ios-app/ProductReviewApp/App/ProductReviewApp.swift","/Users/aybukedemir/Desktop/intern-project-product-review-main/ios-app/ProductReviewApp/Models/Product.swift","/Users/aybukedemir/Desktop/intern-project-product-review-main/ios-app/ProductReviewApp/Models/Review.swift","/Users/aybukedemir/Desktop/intern-project-product-review-main/ios-app/ProductReviewApp/Services/APIService.swift","/Users/aybukedemir/Desktop/intern-project-product-review-main/ios-app/ProductReviewApp/ViewModels/ProductDetailViewModel.swift","/Users/aybukedemir/Desktop/intern-project-product-review-main/ios-app/ProductReviewApp/ViewModels/ProductListViewModel.swift","/Users/aybukedemir/Desktop/intern-project-product-review-main/ios-app/ProductReviewApp/Views/ProductDetailView.swift","/Users/aybukedemir/Desktop/intern-project-product-review-main/ios-app/ProductReviewApp/Views/ProductListView.swift","/Users/aybukedemir/Desktop/intern-project-product-review-main/ios-app/.build/index-build/arm64-apple-macosx/debug/swift-version--58304C5D6DBC2206.txt","/Users/aybukedemir/Desktop/intern-project-product-review-main/ios-app/.build/index-build/arm64-apple-macosx/debug/ProductReviewApp.build/sources"]
+    outputs: ["/Users/aybukedemir/Desktop/intern-project-product-review-main/ios-app/.build/index-build/arm64-apple-macosx/debug/Modules/ProductReviewApp.swiftmodule"]
+    description: "Compiling Swift Module 'ProductReviewApp' (8 sources)"
+    args: ["/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/swiftc","-module-name","ProductReviewApp","-emit-dependencies","-emit-module","-emit-module-path","/Users/aybukedemir/Desktop/intern-project-product-review-main/ios-app/.build/index-build/arm64-apple-macosx/debug/Modules/ProductReviewApp.swiftmodule","-output-file-map","/Users/aybukedemir/Desktop/intern-project-product-review-main/ios-app/.build/index-build/arm64-apple-macosx/debug/ProductReviewApp.build/output-file-map.json","-incremental","@/Users/aybukedemir/Desktop/intern-project-product-review-main/ios-app/.build/index-build/arm64-apple-macosx/debug/ProductReviewApp.build/sources","-I","/Users/aybukedemir/Desktop/intern-project-product-review-main/ios-app/.build/index-build/arm64-apple-macosx/debug/Modules","-target","arm64-apple-macosx14.0","-incremental","-enable-batch-mode","-serialize-diagnostics","-Onone","-enable-testing","-j8","-DSWIFT_PACKAGE","-DDEBUG","-DSWIFT_MODULE_RESOURCE_BUNDLE_UNAVAILABLE","-module-cache-path","/Users/aybukedemir/Desktop/intern-project-product-review-main/ios-app/.build/index-build/arm64-apple-macosx/debug/ModuleCache","-parseable-output","-Xfrontend","-entry-point-function-name","-Xfrontend","ProductReviewApp_main","-swift-version","5","-Xfrontend","-experimental-lazy-typecheck","-Xfrontend","-experimental-skip-all-function-bodies","-Xfrontend","-experimental-allow-module-with-compiler-errors","-Xfrontend","-empty-abi-descriptor","-plugin-path","/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/host/plugins/testing","-sdk","/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX26.2.sdk","-F","/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/Library/Frameworks","-F","/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/Library/PrivateFrameworks","-I","/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/usr/lib","-L","/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/usr/lib","-g","-Xcc","-isysroot","-Xcc","/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX26.2.sdk","-Xcc","-F","-Xcc","/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/Library/Frameworks","-Xcc","-F","-Xcc","/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/Library/PrivateFrameworks","-Xcc","-fPIC","-Xcc","-g","-package-name","ios_app"]
+
+  "PackageStructure":
+    tool: package-structure-tool
+    inputs: ["/Users/aybukedemir/Desktop/intern-project-product-review-main/ios-app/ProductReviewApp/","/Users/aybukedemir/Desktop/intern-project-product-review-main/ios-app/Package.swift","/Users/aybukedemir/Desktop/intern-project-product-review-main/ios-app/Package.resolved"]
+    outputs: ["<PackageStructure>"]
+    description: "Planning build"
+    allow-missing-inputs: true
+

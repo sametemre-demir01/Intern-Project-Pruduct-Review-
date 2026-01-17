@@ -30,10 +30,10 @@ else
     echo "⚠️  Backend henüz hazır değil, devam ediliyor..."
 fi
 
-# Mobile uygulamayı başlat
+# Mobile uygulamayı başlat (sadece development server, tarayıcıyı otomatik açma)
 echo "📱 Mobile uygulama başlatılıyor (port 8081)..."
 cd "$(dirname "$0")/mobile"
-npm start
+npx expo start --web --no-dev-client
 
 # Script kapandığında backend'i de kapat
 trap "kill $BACKEND_PID 2>/dev/null" EXIT

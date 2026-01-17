@@ -10,6 +10,7 @@ import { NotificationsScreen } from './screens/NotificationsScreen';
 import { NotificationDetailScreen } from './screens/NotificationDetailScreen';
 import { WishlistScreen } from './screens/WishlistScreen';
 import { AIAssistantScreen } from './screens/AIAssistantScreen'; // Imported AIAssistantScreen
+import { ProductComparisonScreen } from './screens/ProductComparisonScreen';
 import { NotificationProvider } from './context/NotificationContext';
 import { WishlistProvider } from './context/WishlistContext';
 import { ToastProvider } from './context/ToastContext';
@@ -70,6 +71,11 @@ function AppNavigator() {
           name="AIAssistant" 
           component={AIAssistantScreen}
           options={{ animation: 'slide_from_bottom' }} // Nice animation for chat
+        />
+        <Stack.Screen 
+          name="ProductComparison" 
+          component={ProductComparisonScreen}
+          options={{ animation: 'slide_from_right' }}
         />
       </Stack.Navigator>
     </NavigationContainer>

@@ -92,6 +92,10 @@ public class AISummaryService {
         if (lowerMessage.contains("fiyat") || lowerMessage.contains("price")) {
             return "Bu ürün, kategorisindeki benzer ürünlerle karşılaştırıldığında rekabetçi bir fiyata sahip. Kalite ve özellikler göz önüne alındığında iyi bir değer sunuyor.";
         } else if (lowerMessage.contains("karşılaştır") || lowerMessage.contains("compare")) {
+            // Dinamik karşılaştırma yanıtı oluştur
+            if (productContext != null && productContext.contains("Karşılaştırılacak ürünler:")) {
+                return generateDynamicComparisonResponse(productContext);
+            }
             return "Bu ürün, benzer ürünlerle karşılaştırıldığında öne çıkan özelliklere sahip. Özellikle kalite ve performans açısından avantajlı.";
         } else if (lowerMessage.contains("tavsiye") || lowerMessage.contains("recommend")) {
             return "Müşteri yorumlarına göre bu ürün yüksek memnuniyet oranına sahip. Özellikle günlük kullanım için tavsiye edilebilir.";
@@ -312,6 +316,138 @@ public class AISummaryService {
             } else {
                 return "Some customers have expressed concerns. ";
             }
+        }
+    }
+    
+    /**
+     * Generate dynamic comparison response based on product context
+     */
+    private String generateDynamicComparisonResponse(String productContext) {
+        try {
+            // Parse product information from context
+            String[] lines = productContext.split("\n");
+            java.util.List<String> productNames = new java.util.ArrayList<>();
+            java.util.List<Double> prices = new java.util.ArrayList<>();
+            java.util.List<Double> ratings = new java.util.ArrayList<>();
+            java.util.List<Integer> reviewCounts = new java.util.ArrayList<>();
+            
+            for (String line : lines) {
+                if (line.startsWith("- ")) {
+                    // Parse: "- Product Name: 100.00 TL, 4.5/5 puan (10 yorum), description"
+                    String productInfo = line.substring(2);
+                    
+                    // Find the first ": " to separate name from details
+                    int colonIndex = productInfo.indexOf(": ");
+                    if (colonIndex > 0) {
+                        String name = productInfo.substring(0, colonIndex).trim();
+                        String details = productInfo.substring(colonIndex + 2).trim();
+                        
+                        productNames.add(name);
+                        
+                        // Extract price: "100.00 TL"
+                        java.util.regex.Pattern pricePattern = java.util.regex.Pattern.compile("([0-9]+(?:\\.[0-9]+)?)\\s*TL");
+                        java.util.regex.Matcher priceMatcher = pricePattern.matcher(details);
+                        if (priceMatcher.find()) {
+                            prices.add(Double.parseDouble(priceMatcher.group(1)));
+                        } else {
+                            prices.add(0.0); // Default if not found
+                        }
+                        
+                        // Extract rating: "4.5/5"
+                        java.util.regex.Pattern ratingPattern = java.util.regex.Pattern.compile("([0-9]+(?:\\.[0-9]+)?)/5");
+                        java.util.regex.Matcher ratingMatcher = ratingPattern.matcher(details);
+                        if (ratingMatcher.find()) {
+                            ratings.add(Double.parseDouble(ratingMatcher.group(1)));
+                        } else {
+                            ratings.add(0.0); // Default if not found
+                        }
+                        
+                        // Extract review count: "(10 yorum)"
+                        java.util.regex.Pattern reviewPattern = java.util.regex.Pattern.compile("\\((\\d+)\\s*yorum\\)");
+                        java.util.regex.Matcher reviewMatcher = reviewPattern.matcher(details);
+                        if (reviewMatcher.find()) {
+                            reviewCounts.add(Integer.parseInt(reviewMatcher.group(1)));
+                        } else {
+                            reviewCounts.add(0); // Default if not found
+                        }
+                    }
+                }
+            }
+            
+            if (productNames.size() < 2) {
+                return "Bu ürünler karşılaştırıldığında, her birinin kendine özgü avantajları bulunuyor. Detaylı karar için özellik listelerini inceleyebilirsiniz.";
+            }
+            
+            // Find best value metrics
+            double maxRating = ratings.stream().mapToDouble(Double::doubleValue).max().orElse(0);
+            double minPrice = prices.stream().mapToDouble(Double::doubleValue).min().orElse(0);
+            int maxReviews = reviewCounts.stream().mapToInt(Integer::intValue).max().orElse(0);
+            
+            StringBuilder response = new StringBuilder();
+            response.append("Bu ").append(productNames.size()).append(" ürünü karşılaştırdığımda:\n\n");
+            
+            // Price analysis
+            if (minPrice > 0) {
+                response.append("💰 Fiyat açısından: ");
+                for (int i = 0; i < productNames.size(); i++) {
+                    if (prices.get(i) == minPrice) {
+                        response.append("\"").append(productNames.get(i)).append("\" en uygun fiyatlı seçenek (").append(minPrice).append(" TL). ");
+                        break;
+                    }
+                }
+                response.append("\n");
+            }
+            
+            // Rating analysis
+            if (maxRating > 0) {
+                response.append("⭐ Kalite açısından: ");
+                for (int i = 0; i < productNames.size(); i++) {
+                    if (ratings.get(i) == maxRating) {
+                        response.append("\"").append(productNames.get(i)).append("\" (").append(maxRating).append("/5 puan) en yüksek puan almış. ");
+                        break;
+                    }
+                }
+                response.append("\n");
+            }
+            
+            // Review count analysis
+            if (maxReviews > 0) {
+                response.append("📊 Yorum sayısı açısından: ");
+                for (int i = 0; i < productNames.size(); i++) {
+                    if (reviewCounts.get(i) == maxReviews) {
+                        response.append("\"").append(productNames.get(i)).append("\" (").append(maxReviews).append(" yorum) en çok değerlendirilmiş. ");
+                        break;
+                    }
+                }
+                response.append("\n");
+            }
+            
+            // Recommendation based on data
+            response.append("\n📋 Öneri: ");
+            boolean hasHighRating = maxRating >= 4.5;
+            boolean hasManyReviews = maxReviews >= 10;
+            boolean hasLowPrice = minPrice > 0 && minPrice < 1000; // Assuming reasonable price threshold
+            
+            if (hasHighRating && hasManyReviews) {
+                response.append("Hem yüksek puan hem de çok sayıda yorum alan ürünler güvenilir seçenekler. ");
+                if (hasLowPrice) {
+                    response.append("Ayrıca uygun fiyatlı alternatifler de mevcut.");
+                } else {
+                    response.append("Kalite odaklıysanız yüksek puanlı ürünleri tercih edebilirsiniz.");
+                }
+            } else if (hasHighRating) {
+                response.append("Kalite odaklıysanız yüksek puanlı ürünleri tercih edebilirsiniz.");
+            } else if (hasManyReviews) {
+                response.append("Çok sayıda yorum alan ürünler daha güvenilir olabilir.");
+            } else {
+                response.append("Tüm seçenekler dikkate alınmaya değer, kullanım amacınıza göre karar verin.");
+            }
+            
+            return response.toString();
+            
+        } catch (Exception e) {
+            log.warn("Error generating dynamic comparison response: {}", e.getMessage());
+            return "Bu ürünler karşılaştırıldığında, her birinin kendine özgü avantajları bulunuyor. Detaylı karar için özellik listelerini inceleyebilirsiniz.";
         }
     }
 }

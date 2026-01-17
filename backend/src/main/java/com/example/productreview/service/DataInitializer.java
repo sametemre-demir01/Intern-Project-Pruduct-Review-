@@ -1,9 +1,11 @@
 package com.example.productreview.service;
 
+import com.example.productreview.model.PriceHistory;
 import com.example.productreview.model.Product;
 import com.example.productreview.model.Review;
-import com.example.productreview.model.Role;
 import com.example.productreview.model.User;
+import com.example.productreview.model.Role;
+import com.example.productreview.repository.PriceHistoryRepository;
 import com.example.productreview.repository.ProductRepository;
 import com.example.productreview.repository.ReviewRepository;
 import com.example.productreview.repository.UserRepository;
@@ -20,13 +22,16 @@ public class DataInitializer implements CommandLineRunner {
     private final ProductRepository productRepository;
     private final ReviewRepository reviewRepository;
     private final UserRepository userRepository;
+    private final PriceHistoryRepository priceHistoryRepository;
     private final PasswordEncoder passwordEncoder;
 
     public DataInitializer(ProductRepository productRepository, ReviewRepository reviewRepository,
-                           UserRepository userRepository, PasswordEncoder passwordEncoder) {
+                           UserRepository userRepository, PriceHistoryRepository priceHistoryRepository,
+                           PasswordEncoder passwordEncoder) {
         this.productRepository = productRepository;
         this.reviewRepository = reviewRepository;
         this.userRepository = userRepository;
+        this.priceHistoryRepository = priceHistoryRepository;
         this.passwordEncoder = passwordEncoder;
     }
 
@@ -112,6 +117,39 @@ public class DataInitializer implements CommandLineRunner {
                 int rating = random.nextInt(5) + 1;
                 addReview(iphone, name, comment + " (Test Review " + (i + 1) + ")", rating);
             }
+        }
+        
+        // Fiyat düşüşü verisi oluştur
+        createPriceDrops();
+    }
+    
+    /**
+     * Fiyat düşüşü verisi oluştur
+     */
+    private void createPriceDrops() {
+        // iPhone 15 Pro'yu 1199.99'dan 999.99'a düşür
+        Product iphone = productRepository.findByName("iPhone 15 Pro");
+        if (iphone != null) {
+            Double oldPrice = 1199.99;
+            Double newPrice = iphone.getPrice(); // 999.99
+            
+            // Fiyat geçmişine kaydet
+            PriceHistory history = new PriceHistory(iphone, oldPrice, newPrice);
+            priceHistoryRepository.save(history);
+            
+            System.out.println("📉 Fiyat düşüşü oluşturuldu: iPhone 15 Pro " + oldPrice + " -> " + newPrice);
+        }
+        
+        // Samsung Galaxy'yi 1399.99'dan 1199.99'a düşür
+        Product samsung = productRepository.findByName("Samsung Galaxy S24 Ultra");
+        if (samsung != null) {
+            Double oldPrice = 1399.99;
+            Double newPrice = samsung.getPrice(); // 1199.99
+            
+            PriceHistory history = new PriceHistory(samsung, oldPrice, newPrice);
+            priceHistoryRepository.save(history);
+            
+            System.out.println("📉 Fiyat düşüşü oluşturuldu: Samsung Galaxy S24 Ultra " + oldPrice + " -> " + newPrice);
         }
     }
 

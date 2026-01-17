@@ -17,6 +17,9 @@ export type RootStackParamList = {
     productId: string;
     reviews: Review[];
   };
+  ProductComparison: {
+    selectedProductIds: number[];
+  };
 };
 
 export interface Review {

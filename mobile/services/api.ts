@@ -42,7 +42,15 @@ async function request<T>(url: string, options?: RequestInit): Promise<T> {
   return res.json() as Promise<T>;
 }
 
-export function getProducts(params?: { page?: number; size?: number; sort?: string; category?: string }) {
+export function getProducts(params?: { 
+  page?: number; 
+  size?: number; 
+  sort?: string; 
+  category?: string;
+  minPrice?: number;
+  maxPrice?: number;
+  minRating?: number;
+}) {
   const q = new URLSearchParams({
     page: String(params?.page ?? 0),
     size: String(params?.size ?? 10),
@@ -53,7 +61,19 @@ export function getProducts(params?: { page?: number; size?: number; sort?: stri
     q.append('category', params.category);
   }
   
-  return request<Page<ApiProduct>>(`${BASE_URL}/api/products?${q.toString()}`);
+  if (params?.minPrice !== undefined) {
+    q.append('minPrice', String(params.minPrice));
+  }
+  
+  if (params?.maxPrice !== undefined) {
+    q.append('maxPrice', String(params.maxPrice));
+  }
+  
+  if (params?.minRating !== undefined) {
+    q.append('minRating', String(params.minRating));
+  }
+  
+  return request<Page<ApiProduct>>(`${BASE_URL}/api/products/filter?${q.toString()}`);
 }
 
 export function getProduct(id: number | string) {
@@ -86,4 +106,30 @@ export function markReviewAsHelpful(reviewId: number | string) {
   return request<ApiReview>(`${BASE_URL}/api/products/reviews/${reviewId}/helpful`, {
     method: "PUT",
   });
+}
+
+export function compareProducts(ids: number[]) {
+  const idsStr = ids.join(',');
+  return request<ApiProduct[]>(`${BASE_URL}/api/products/compare?ids=${idsStr}`);
+}
+
+export function compareWithAI(productIds: number[]) {
+  return request<{ products: ApiProduct[]; analysis: string }>(`${BASE_URL}/api/ai/compare`, {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({ productIds }),
+  });
+}
+
+export type PriceDrop = {
+  productId: number;
+  productName: string;
+  oldPrice: number;
+  newPrice: number;
+  changePercent: number;
+  changedAt: string;
+};
+
+export function getPriceDrops() {
+  return request<PriceDrop[]>(`${BASE_URL}/api/price-alerts/drops`);
 }

@@ -11,6 +11,8 @@ import {
   ActivityIndicator,
   useWindowDimensions,
   Platform,
+  Modal,
+  TextInput,
 } from 'react-native';
 
 import { useNavigation, useFocusEffect } from '@react-navigation/native';
@@ -65,6 +67,15 @@ export const ProductListScreen: React.FC = () => {
   const [selectedCategory, setSelectedCategory] = useState('All');
   const [searchQuery, setSearchQuery] = useState('');
   const [sortBy, setSortBy] = useState('name,asc');
+  
+  // Yeni filtre state'leri
+  const [minPrice, setMinPrice] = useState<number | undefined>(undefined);
+  const [maxPrice, setMaxPrice] = useState<number | undefined>(undefined);
+  const [minRating, setMinRating] = useState<number | undefined>(undefined);
+  
+  // Modal state'leri
+  const [showPriceModal, setShowPriceModal] = useState(false);
+  const [showRatingModal, setShowRatingModal] = useState(false);
 
   // Toggle grid: 1 → 2 → 4 → 1
   const toggleGridMode = () => {
@@ -147,6 +158,15 @@ export const ProductListScreen: React.FC = () => {
     setIsSelectionMode(false);
   };
 
+  const handleCompare = () => {
+    const selectedIds = Array.from(selectedItems).map(id => parseInt(id)).filter(id => !isNaN(id));
+    if (selectedIds.length >= 2) {
+      navigation.navigate('ProductComparison', { selectedProductIds: selectedIds });
+      setSelectedItems(new Set());
+      setIsSelectionMode(false);
+    }
+  };
+
   const fetchProducts = useCallback(async (pageNum: number = 0, append: boolean = false) => {
     try {
       if (!append) {
@@ -160,7 +180,10 @@ export const ProductListScreen: React.FC = () => {
         page: pageNum, 
         size: 20,
         sort: sortBy,
-        category: selectedCategory 
+        category: selectedCategory,
+        minPrice: minPrice,
+        maxPrice: maxPrice,
+        minRating: minRating
       });
       
       const newProducts = page?.content ?? [];
@@ -185,12 +208,12 @@ export const ProductListScreen: React.FC = () => {
 
   useEffect(() => {
     fetchProducts(0, false);
-  }, [selectedCategory, sortBy]);
+  }, [selectedCategory, sortBy, minPrice, maxPrice, minRating]);
 
   useFocusEffect(
     useCallback(() => {
       fetchProducts(0, false);
-    }, [selectedCategory, sortBy])
+    }, [selectedCategory, sortBy, minPrice, maxPrice, minRating])
   );
 
   const loadMoreProducts = useCallback(() => {
@@ -242,6 +265,17 @@ export const ProductListScreen: React.FC = () => {
         </View>
 
         <View style={styles.headerButtons}>
+          {/* Compare Button */}
+          {!isSelectionMode && (
+            <TouchableOpacity
+              style={[styles.compareButton, { backgroundColor: colors.secondary }]}
+              onPress={() => setIsSelectionMode(true)}
+              activeOpacity={0.8}
+            >
+              <Ionicons name="git-compare-outline" size={20} color={colors.foreground} />
+            </TouchableOpacity>
+          )}
+
           {/* Dark Mode Toggle */}
           <TouchableOpacity
             style={[styles.themeButton, { backgroundColor: colors.secondary }]}
@@ -309,6 +343,57 @@ export const ProductListScreen: React.FC = () => {
 
       <View style={styles.searchSection}>
         <SearchBar value={searchQuery} onChangeText={setSearchQuery} />
+      </View>
+
+      {/* Filtre Butonları */}
+      <View style={styles.filtersSection}>
+        <View style={styles.filterContainer}>
+          <TouchableOpacity
+            style={[styles.filterButton, { backgroundColor: colors.secondary }]}
+            onPress={() => setShowPriceModal(true)}
+            activeOpacity={0.8}
+          >
+            <Ionicons name="cash-outline" size={16} color={colors.foreground} />
+            <Text style={[styles.filterButtonText, { color: colors.foreground }]}>
+              Fiyat: {minPrice !== undefined || maxPrice !== undefined ? 
+                `$${minPrice ?? 0} - ${maxPrice ?? '∞'}$` : 'Tümü'}
+            </Text>
+          </TouchableOpacity>
+          {(minPrice !== undefined || maxPrice !== undefined) && (
+            <TouchableOpacity
+              style={[styles.clearFilterButton, { backgroundColor: colors.destructive }]}
+              onPress={() => {
+                setMinPrice(undefined);
+                setMaxPrice(undefined);
+              }}
+              activeOpacity={0.8}
+            >
+              <Ionicons name="close" size={14} color="#fff" />
+            </TouchableOpacity>
+          )}
+        </View>
+
+        <View style={styles.filterContainer}>
+          <TouchableOpacity
+            style={[styles.filterButton, { backgroundColor: colors.secondary }]}
+            onPress={() => setShowRatingModal(true)}
+            activeOpacity={0.8}
+          >
+            <Ionicons name="star-outline" size={16} color={colors.foreground} />
+            <Text style={[styles.filterButtonText, { color: colors.foreground }]}>
+              Puan: {minRating !== undefined ? `${minRating}+ yıldız` : 'Tümü'}
+            </Text>
+          </TouchableOpacity>
+          {minRating !== undefined && (
+            <TouchableOpacity
+              style={[styles.clearFilterButton, { backgroundColor: colors.destructive }]}
+              onPress={() => setMinRating(undefined)}
+              activeOpacity={0.8}
+            >
+              <Ionicons name="close" size={14} color="#fff" />
+            </TouchableOpacity>
+          )}
+        </View>
       </View>
 
       <View style={styles.sectionHeader}>
@@ -443,10 +528,127 @@ export const ProductListScreen: React.FC = () => {
                   Add to Wishlist ({selectedItems.size})
                 </Text>
               </TouchableOpacity>
+
+              {selectedItems.size >= 2 && (
+                <TouchableOpacity
+                  style={[styles.floatingButton, styles.compareFloatingButton, { backgroundColor: colors.accent }]}
+                  onPress={handleCompare}
+                  activeOpacity={0.8}
+                >
+                  <Ionicons name="git-compare" size={18} color="#fff" />
+                  <Text style={[styles.floatingButtonText, { color: '#fff' }]}>
+                    Compare ({selectedItems.size})
+                  </Text>
+                </TouchableOpacity>
+              )}
             </View>
           )}
         </View>
       </TouchableWithoutFeedback>
+
+      {/* Fiyat Filtresi Modal */}
+      <Modal
+        visible={showPriceModal}
+        transparent
+        animationType="fade"
+        onRequestClose={() => setShowPriceModal(false)}
+      >
+        <View style={styles.modalOverlay}>
+          <View style={[styles.modalContent, { backgroundColor: colors.background }]}>
+            <Text style={[styles.modalTitle, { color: colors.foreground }]}>Fiyat Aralığı</Text>
+            
+            <View style={styles.inputRow}>
+              <Text style={[styles.inputLabel, { color: colors.foreground }]}>Min:</Text>
+              <TextInput
+                style={[styles.textInput, { backgroundColor: colors.secondary, color: colors.foreground }]}
+                placeholder="0"
+                placeholderTextColor={colors.mutedForeground}
+                keyboardType="numeric"
+                value={minPrice?.toString() ?? ''}
+                onChangeText={(text) => setMinPrice(text ? parseInt(text) : undefined)}
+              />
+            </View>
+
+            <View style={styles.inputRow}>
+              <Text style={[styles.inputLabel, { color: colors.foreground }]}>Max:</Text>
+              <TextInput
+                style={[styles.textInput, { backgroundColor: colors.secondary, color: colors.foreground }]}
+                placeholder="Sınırsız"
+                placeholderTextColor={colors.mutedForeground}
+                keyboardType="numeric"
+                value={maxPrice?.toString() ?? ''}
+                onChangeText={(text) => setMaxPrice(text ? parseInt(text) : undefined)}
+              />
+            </View>
+
+            <View style={styles.modalButtons}>
+              <TouchableOpacity
+                style={[styles.modalButton, styles.cancelModalButton]}
+                onPress={() => setShowPriceModal(false)}
+              >
+                <Text style={[styles.modalButtonText, { color: colors.foreground }]}>İptal</Text>
+              </TouchableOpacity>
+              <TouchableOpacity
+                style={[styles.modalButton, { backgroundColor: colors.primary }]}
+                onPress={() => setShowPriceModal(false)}
+              >
+                <Text style={[styles.modalButtonText, { color: colors.primaryForeground }]}>Uygula</Text>
+              </TouchableOpacity>
+            </View>
+          </View>
+        </View>
+      </Modal>
+
+      {/* Puan Filtresi Modal */}
+      <Modal
+        visible={showRatingModal}
+        transparent
+        animationType="fade"
+        onRequestClose={() => setShowRatingModal(false)}
+      >
+        <View style={styles.modalOverlay}>
+          <View style={[styles.modalContent, { backgroundColor: colors.background }]}>
+            <Text style={[styles.modalTitle, { color: colors.foreground }]}>Minimum Puan</Text>
+            
+            {[4, 3, 2, 1].map((rating) => (
+              <TouchableOpacity
+                key={rating}
+                style={[styles.ratingOption, { backgroundColor: minRating === rating ? colors.primary : colors.secondary }]}
+                onPress={() => setMinRating(minRating === rating ? undefined : rating)}
+              >
+                <View style={{ flexDirection: 'row' }}>
+                  {[...Array(5)].map((_, i) => (
+                    <Ionicons
+                      key={i}
+                      name={i < rating ? "star" : "star-outline"}
+                      size={16}
+                      color={minRating === rating ? colors.primaryForeground : colors.foreground}
+                    />
+                  ))}
+                </View>
+                <Text style={[styles.ratingText, { color: minRating === rating ? colors.primaryForeground : colors.foreground }]}>
+                  {rating}+ yıldız
+                </Text>
+              </TouchableOpacity>
+            ))}
+
+            <View style={styles.modalButtons}>
+              <TouchableOpacity
+                style={[styles.modalButton, styles.cancelModalButton]}
+                onPress={() => setShowRatingModal(false)}
+              >
+                <Text style={[styles.modalButtonText, { color: colors.foreground }]}>İptal</Text>
+              </TouchableOpacity>
+              <TouchableOpacity
+                style={[styles.modalButton, { backgroundColor: colors.primary }]}
+                onPress={() => setShowRatingModal(false)}
+              >
+                <Text style={[styles.modalButtonText, { color: colors.primaryForeground }]}>Uygula</Text>
+              </TouchableOpacity>
+            </View>
+          </View>
+        </View>
+      </Modal>
     </ScreenWrapper>
   );
 };
@@ -634,6 +836,107 @@ const styles = StyleSheet.create({
   },
   floatingButtonText: {
     fontSize: FontSize.sm,
+    fontWeight: FontWeight.semibold,
+  },
+
+  // Yeni filtre stilleri
+  filtersSection: {
+    flexDirection: 'row',
+    gap: Spacing.sm,
+    paddingHorizontal: Spacing.lg,
+    marginBottom: Spacing.lg,
+  },
+  filterContainer: {
+    flex: 1,
+    flexDirection: 'row',
+    alignItems: 'center',
+  },
+  filterButton: {
+    flex: 1,
+    flexDirection: 'row',
+    alignItems: 'center',
+    gap: Spacing.xs,
+    paddingHorizontal: Spacing.md,
+    paddingVertical: Spacing.sm,
+    borderRadius: BorderRadius.lg,
+  },
+  filterButtonText: {
+    fontSize: FontSize.sm,
+    fontWeight: FontWeight.medium,
+  },
+  clearFilterButton: {
+    marginLeft: Spacing.xs,
+    width: 24,
+    height: 24,
+    borderRadius: 12,
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+
+  // Modal stilleri
+  modalOverlay: {
+    flex: 1,
+    backgroundColor: 'rgba(0,0,0,0.5)',
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  modalContent: {
+    margin: Spacing.xl,
+    borderRadius: BorderRadius.xl,
+    padding: Spacing.xl,
+    width: '80%',
+    maxWidth: 400,
+  },
+  modalTitle: {
+    fontSize: FontSize.xl,
+    fontWeight: FontWeight.bold,
+    marginBottom: Spacing.lg,
+    textAlign: 'center',
+  },
+  inputRow: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    marginBottom: Spacing.md,
+  },
+  inputLabel: {
+    width: 40,
+    fontSize: FontSize.md,
+    fontWeight: FontWeight.medium,
+  },
+  textInput: {
+    flex: 1,
+    padding: Spacing.sm,
+    borderRadius: BorderRadius.md,
+    fontSize: FontSize.md,
+  },
+  ratingOption: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'space-between',
+    padding: Spacing.md,
+    borderRadius: BorderRadius.md,
+    marginBottom: Spacing.sm,
+  },
+  ratingText: {
+    fontSize: FontSize.md,
+    fontWeight: FontWeight.medium,
+  },
+  modalButtons: {
+    flexDirection: 'row',
+    gap: Spacing.md,
+    marginTop: Spacing.lg,
+  },
+  modalButton: {
+    flex: 1,
+    padding: Spacing.md,
+    borderRadius: BorderRadius.md,
+    alignItems: 'center',
+  },
+  cancelModalButton: {
+    backgroundColor: 'transparent',
+  },
+  modalButtonText: {
+    fontSize: FontSize.md,
     fontWeight: FontWeight.semibold,
   },
   });

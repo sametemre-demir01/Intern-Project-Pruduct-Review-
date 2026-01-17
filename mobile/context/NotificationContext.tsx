@@ -1,7 +1,8 @@
 // Notification Context for local notification state management
-import React, { createContext, useContext, useState, useCallback, ReactNode } from 'react';
+import React, { createContext, useContext, useState, useCallback, ReactNode, useEffect } from 'react';
+import { getPriceDrops, PriceDrop } from '../services/api';
 
-export type NotificationType = 'review' | 'order' | 'system';
+export type NotificationType = 'review' | 'order' | 'system' | 'price_drop';
 
 export interface Notification {
   id: string;
@@ -48,6 +49,38 @@ export const NotificationProvider: React.FC<{ children: ReactNode }> = ({ childr
       isRead: true,
     },
   ]);
+
+  // Fetch price drops from API on mount
+  useEffect(() => {
+    const fetchPriceDrops = async () => {
+      try {
+        const priceDrops = await getPriceDrops();
+        const priceDropNotifications: Notification[] = priceDrops.map((drop: PriceDrop) => ({
+          id: `price-drop-${drop.productId}-${drop.changedAt}`,
+          type: 'price_drop',
+          title: 'Price Drop Alert! 📉',
+          body: `${drop.productName} is now $${drop.newPrice.toFixed(2)} (was $${drop.oldPrice.toFixed(2)}, ${drop.changePercent.toFixed(1)}% off)`,
+          timestamp: new Date(drop.changedAt),
+          isRead: false,
+          data: {
+            productId: drop.productId.toString(),
+            productName: drop.productName,
+          },
+        }));
+        
+        // Add new price drop notifications (avoid duplicates)
+        setNotifications(prev => {
+          const existingIds = new Set(prev.map(n => n.id));
+          const newNotifications = priceDropNotifications.filter(n => !existingIds.has(n.id));
+          return [...newNotifications, ...prev];
+        });
+      } catch (error) {
+        console.warn('Failed to fetch price drops:', error);
+      }
+    };
+
+    fetchPriceDrops();
+  }, []);
 
   const unreadCount = notifications.filter((n) => !n.isRead).length;
 

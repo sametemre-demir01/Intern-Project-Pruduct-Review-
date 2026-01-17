@@ -32,6 +32,7 @@ const FILTERS: { key: FilterType; label: string }[] = [
   { key: 'review', label: 'Reviews' },
   { key: 'order', label: 'Orders' },
   { key: 'system', label: 'System' },
+  { key: 'price_drop', label: 'Price Drops' },
 ];
 
 function getTimeAgo(date: Date): string {
@@ -57,6 +58,8 @@ function getNotificationIcon(type: NotificationType): keyof typeof Ionicons.glyp
       return 'cube';
     case 'system':
       return 'notifications';
+    case 'price_drop':
+      return 'trending-down';
   }
 }
 
@@ -68,6 +71,8 @@ function getNotificationColor(type: NotificationType, colors: ReturnType<typeof 
       return colors.success;
     case 'system':
       return '#6366F1'; // Indigo
+    case 'price_drop':
+      return '#EF4444'; // Red
   }
 }
 
@@ -85,9 +90,15 @@ export const NotificationsScreen: React.FC = () => {
 
   const handleNotificationPress = (notification: Notification) => {
     markAsRead(notification.id);
-    
-    // Navigate to notification detail screen
-    navigation.navigate('NotificationDetail', { notificationId: notification.id } as any);
+
+    // Navigate based on notification type
+    if (notification.type === 'price_drop' && notification.data?.productId) {
+      // Navigate to product details for price drop notifications
+      navigation.navigate('ProductDetails', { productId: notification.data.productId });
+    } else {
+      // Navigate to notification detail screen for other types
+      navigation.navigate('NotificationDetail', { notificationId: notification.id } as any);
+    }
   };
 
   const renderFilterChip = ({ key, label }: { key: FilterType; label: string }) => {

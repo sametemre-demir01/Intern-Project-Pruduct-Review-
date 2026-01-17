@@ -11,6 +11,7 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface ProductRepository extends JpaRepository<Product, Long> {
     Page<Product> findByCategory(String category, Pageable pageable);
+    Product findByName(String name);
     
     // Filtreleme: kategori, fiyat aralığı, minimum puan
     @Query("SELECT p FROM Product p WHERE " +
